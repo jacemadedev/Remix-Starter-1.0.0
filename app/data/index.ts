@@ -12,28 +12,28 @@ export const rightJobCards = [
 
 export const demoProjects = [
   {
-    title: 'Composer Cut',
+    title: 'Bolt Max',
     subtitle: 'Clone this project',
     description: 'This starter kit allows users to upload screenshots of their UI and convert them into 3D video clips',
-    videoId: 'dQw4w9WgXcQ',
+    videoId: 'paNnzVPpvaA',
     techStack: [],
   },
   {
     title: 'Composer Cut',
     subtitle: 'Clone this project',
     description: 'This starter kit allows users to upload screenshots of their UI and convert them into 3D video clips',
-    videoId: 'dQw4w9WgXcQ',
+    videoId: 'iVY0-iGSpSM',
     techStack: [],
   },
   {
-    title: 'Composer Cut',
+    title: 'Composer Studio',
     subtitle: 'Clone this project',
     description: 'This starter kit allows users to upload screenshots of their UI and convert them into 3D video clips',
     videoId: 'dQw4w9WgXcQ',
     techStack: [],
   },
   {
-    title: 'Composer Cut',
+    title: 'Composer Fit',
     subtitle: 'Clone this project',
     description: 'This starter kit allows users to upload screenshots of their UI and convert them into 3D video clips',
     videoId: 'dQw4w9WgXcQ',

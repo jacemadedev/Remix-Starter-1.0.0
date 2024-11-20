@@ -39,7 +39,12 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
           <Button variant="outline" size="sm" className="rounded-full">
             Add to Composers.dev now <ArrowRight className="ml-2 h-3 w-3" />
           </Button>
-          <Button variant="outline" size="sm" className="rounded-full">
+          <Button 
+            variant="outline" 
+            size="sm" 
+            className="rounded-full"
+            onClick={() => window.open(`https://www.youtube.com/watch?v=${videoId}`, '_blank')}
+          >
             Preview <ExternalLink className="ml-2 h-3 w-3" />
           </Button>
         </div>

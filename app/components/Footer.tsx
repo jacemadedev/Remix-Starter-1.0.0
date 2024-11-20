@@ -7,11 +7,11 @@ export function Footer() {
             <span className="text-xl font-bold tracking-tight">Composers.dev</span>
           </div>
           <nav className="flex flex-wrap justify-center md:justify-end gap-x-8 gap-y-4 text-sm">
-            <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">Home</a>
-            <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">About</a>
-            <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">Docs</a>
-            <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">GitHub</a>
-            <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">Twitter</a>
+            <a href="/" className="text-muted-foreground hover:text-foreground transition-colors">Home</a>
+            <a href="/about" className="text-muted-foreground hover:text-foreground transition-colors">About</a>
+            <a href="/docs" className="text-muted-foreground hover:text-foreground transition-colors">Docs</a>
+            <a href="https://github.com" className="text-muted-foreground hover:text-foreground transition-colors">GitHub</a>
+            <a href="https://twitter.com" className="text-muted-foreground hover:text-foreground transition-colors">Twitter</a>
           </nav>
         </div>
         <div className="mt-8 pt-8 border-t border-border text-center text-sm text-muted-foreground">

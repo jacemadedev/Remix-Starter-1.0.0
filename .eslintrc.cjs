@@ -19,7 +19,11 @@ module.exports = {
     commonjs: true,
     es6: true,
   },
-  ignorePatterns: ["!**/.server", "!**/.client"],
+  ignorePatterns: [
+    "!**/.server",
+    "!**/.client",
+    "build/",
+  ],
 
   // Base config
   extends: ["eslint:recommended"],
@@ -71,6 +75,9 @@ module.exports = {
         "plugin:import/recommended",
         "plugin:import/typescript",
       ],
+      rules: {
+        "react/prop-types": "off",
+      },
     },
 
     // Node

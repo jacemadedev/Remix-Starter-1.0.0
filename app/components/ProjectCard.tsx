@@ -9,7 +9,6 @@ interface ProjectCardProps {
   subtitle: string;
   description: string;
   videoId: string;
-  techStack: string[];
 }
 
 export const ProjectCard: React.FC<ProjectCardProps> = ({
@@ -17,7 +16,6 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
   subtitle,
   description,
   videoId,
-  techStack,
 }) => (
   <Card className="overflow-hidden border-0 bg-card">
     <CardHeader className="p-0">

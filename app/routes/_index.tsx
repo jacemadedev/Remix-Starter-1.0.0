@@ -2,14 +2,24 @@ import { MetaFunction } from "@remix-run/node";
 import { Header } from "~/components/Header";
 import { Hero } from "~/components/Hero";
 import { DemoProjects } from "~/components/DemoProjects";
-import { Pricing } from "~/components/Pricing";
 import { Footer } from "~/components/Footer";
 import { useDarkMode } from "~/hooks/useDarkMode";
 
 export const meta: MetaFunction = () => {
   return [
-    { title: "Composers.dev - Build Better Websites" },
-    { name: "description", content: "Create modern, resilient user experiences with web fundamentals." },
+    { title: "Composers.dev - Build Better Websites with Modern Boilerplates" },
+    { 
+      name: "description", 
+      content: "Create modern, resilient web applications with our professional boilerplates. Featuring React, TypeScript, Tailwind CSS, and more. Get started quickly with our battle-tested templates." 
+    },
+    { 
+      property: "og:title", 
+      content: "Composers.dev - Build Better Websites with Modern Boilerplates" 
+    },
+    { 
+      property: "og:description", 
+      content: "Create modern, resilient web applications with our professional boilerplates. Featuring React, TypeScript, Tailwind CSS, and more. Get started quickly with our battle-tested templates." 
+    },
   ];
 };
 
@@ -25,13 +35,14 @@ export default function HomePage() {
       </div>
       
       <div className="relative">
-        <div className="container mx-auto px-4 py-6">
+        <div className="container mx-auto px-4">
           <Header />
-          <Hero />
+          <div className="h-[90vh] flex items-center justify-center">
+            <Hero />
+          </div>
         </div>
 
         <DemoProjects />
-        <Pricing />
         <Footer />
       </div>
     </div>

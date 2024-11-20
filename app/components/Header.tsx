@@ -2,11 +2,15 @@ import { Button } from "~/components/ui/button";
 import { Sun, Moon } from "lucide-react";
 import { useDarkMode } from "~/hooks/useDarkMode";
 
-export function Header() {
+interface HeaderProps {
+  className?: string;
+}
+
+export function Header({ className = "" }: HeaderProps) {
   const { isDark, toggleDarkMode } = useDarkMode();
 
   return (
-    <header className="flex items-center justify-between mb-20">
+    <header className={`flex items-center justify-between pt-8 pb-4 ${className}`}>
       <div className="flex items-center space-x-2">
         <span className="text-2xl font-bold tracking-tight">Composers.dev</span>
       </div>

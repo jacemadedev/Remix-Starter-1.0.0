@@ -5,7 +5,10 @@ import {
   Scripts,
   ScrollRestoration,
 } from "@remix-run/react";
-import type { LinksFunction, MetaFunction } from "@remix-run/node";
+import type { LinksFunction, MetaFunction, LoaderFunctionArgs } from "@remix-run/node";
+import { createBrowserClient, createServerClient } from '@supabase/auth-helpers-remix';
+import { useState, useEffect } from 'react';
+import { json } from '@remix-run/node';
 
 import "./tailwind.css";
 
@@ -51,31 +54,72 @@ export const links: LinksFunction = () => [
   { rel: "manifest", href: "/site.webmanifest" },
 ];
 
+export const loader = async ({ request }: LoaderFunctionArgs) => {
+  const env = {
+    SUPABASE_URL: import.meta.env.VITE_SUPABASE_URL,
+    SUPABASE_ANON_KEY: import.meta.env.VITE_SUPABASE_ANON_KEY,
+  };
+
+  const response = new Response();
+
+  const supabase = createServerClient(
+    env.SUPABASE_URL,
+    env.SUPABASE_ANON_KEY,
+    { request, response }
+  );
+
+  const { data: { session } } = await supabase.auth.getSession();
+
+  return json(
+    { env, session },
+    { headers: response.headers }
+  );
+};
+
 export default function App() {
+  const [supabase, setSupabase] = useState(() => {
+    if (typeof window === 'undefined') {
+      return null;
+    }
+    return createBrowserClient(
+      import.meta.env.VITE_SUPABASE_URL,
+      import.meta.env.VITE_SUPABASE_ANON_KEY
+    );
+  });
+
+  useEffect(() => {
+    if (!supabase && typeof window !== 'undefined') {
+      setSupabase(
+        createBrowserClient(
+          import.meta.env.VITE_SUPABASE_URL,
+          import.meta.env.VITE_SUPABASE_ANON_KEY
+        )
+      );
+    }
+  }, []);
+
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              try {
+                if (localStorage.getItem('darkMode') === 'true' ||
+                    (!localStorage.getItem('darkMode') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                  document.documentElement.classList.add('dark');
+                }
+              } catch (e) {}
+            `,
+          }}
+        />
         <Meta />
         <Links />
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebSite",
-            "name": "Composers.dev",
-            "url": "https://composers.dev",
-            "description": "Professional boilerplates and starter kits for modern web development",
-            "potentialAction": {
-              "@type": "SearchAction",
-              "target": "https://composers.dev/search?q={search_term_string}",
-              "query-input": "required name=search_term_string"
-            }
-          })}
-        </script>
       </head>
       <body>
-        <Outlet />
+        <Outlet context={{ supabase }} />
         <ScrollRestoration />
         <Scripts />
       </body>
